@@ -1,0 +1,33 @@
+{
+  "name": "discord-oauth2-server",
+  "version": "0.0.1",
+  "description": "Simple authentication system to get Discord OAuth2 tokens",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClunkyTeam/Discord-OAuth2-Server.git"
+  },
+  "keywords": [
+    "Discord",
+    "Express"
+  ],
+  "author": "ClunkyTeam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ClunkyTeam/Discord-OAuth2-Server/issues"
+  },
+  "homepage": "https://github.com/ClunkyTeam/Discord-OAuth2-Server-Server#readme",
+  "dependencies": {
+    "discord-oauth2": "^2.10.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "got": "^12.0.0",
+    "morgan": "^1.10.0"
+  }
+}
