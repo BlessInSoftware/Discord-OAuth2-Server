@@ -12,10 +12,6 @@ router.get('/', (req, res) => {
     res.send('If you want to learn more about this app, please visit: https://github.com/ClunkyTeam/Discord-OAuth2-Server');
 });
 
-router.get('*', (req, res) => {
-    res.redirect('/');
-});
-
 router.get('/login', (req, res) => {
     let url = (discordApi.generateAuthUrl({
         scope: scopes,
@@ -44,4 +40,8 @@ router.post('/refresh_token', async (req, res) => {
     } catch (err) {
         res.statusStatus(err.code).send(err.code);
     }
+});
+
+router.get('*', (req, res) => {
+    res.redirect('/');
 });
