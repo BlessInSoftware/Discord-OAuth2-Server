@@ -12,6 +12,10 @@ router.get('/', (req, res) => {
     res.send('If you want to learn more about this app, please visit: https://github.com/ClunkyTeam/Discord-OAuth2-Server');
 });
 
+router.get('*', (req, res) => {
+    res.redirect('/');
+});
+
 router.get('/login', (req, res) => {
     let url = (discordApi.generateAuthUrl({
         scope: scopes,
@@ -26,8 +30,7 @@ router.get('/callback', async (req, res) => {
         scope: scopes,
         grantType: 'authorization_code',
     });
-    credentials.expiration = new Date(Date.now() + (credentials.expires_in * 1000));
-    res.redirect(`${process.env.CLIENT_REDIRECT_URL}?access_token=${credentials.access_token}&refresh_token=${credentials.refresh_token}&expires_in=${credentials.expires_in}&scope=${credentials.scope}&token_type=${credentials.token_type}&expiration=${credentials.expiration}`);
+    res.redirect(`${process.env.CLIENT_REDIRECT_URL}?access_token=${credentials.access_token}&refresh_token=${credentials.refresh_token}&expires_in=${credentials.expires_in}&scope=${credentials.scope}&token_type=${credentials.token_type}`);
 });
 
 router.post('/refresh_token', async (req, res) => {
@@ -37,13 +40,8 @@ router.post('/refresh_token', async (req, res) => {
             grantType: 'refresh_token',
             scope: scopes
         });
-        credentials.expiration = new Date(Date.now() + (credentials.expires_in * 1000));
         res.send(credentials);
     } catch (err) {
         res.statusStatus(err.code).send(err.code);
     }
-});
-
-router.get('*', (req, res) => {
-    res.redirect('/');
 });
